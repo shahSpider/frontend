@@ -50,8 +50,9 @@ const Conversation = ({ conversationId, currentUserId, onBack }) => {
     if (!conversationId) return;
     const token = localStorage.getItem('access_token');
 
-    const websocket = new WebSocket(`ws://localhost:8000/ws/chat/${conversationId}/?token=${token}`);
-    console.log(`WebSocket URL: ws://localhost:8000/ws/chat/${conversationId}/?token=${token}`);
+    const websocket = new WebSocket(
+      `${import.meta.env.VITE_WS_BASE_URL}/ws/chat/${conversationId}/?token=${token}`
+    );
     websocket.onopen = () => {
       console.log("WebSocket connection established");
     };
